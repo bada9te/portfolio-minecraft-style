@@ -22,7 +22,10 @@ export default function RootLayout({
       <body
         className={`${minecraftFont.variable} antialiased`}
       >
-        {children}
+        <div className={"relative font-minecraft bg-cover bg-no-repeat w-screen min-h-screen flex flex-col items-center overflow-hidden"}>
+          <video src={"/bgs/panorama.mp4"} className={"absolute top-0 left-0 min-w-screen min-h-screen object-cover"} playsInline muted loop autoPlay/>
+          {children}
+        </div>
       </body>
     </html>
   );
