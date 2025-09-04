@@ -1,13 +1,20 @@
 "use client"
-import OverlayModal from "@/components/overlay-modal/OverlayModal";
 import {useRouter} from "next/navigation";
-import InputBar from "@/components/input-bar/Input-bar";
 import Image from "next/image";
 import ProjectWithTech from "@/components/project-with-tech/ProjectWithTech";
 import InventoryCell from "@/components/inventory-cell/InventoryCell";
+import {useState} from "react";
+import {technologies} from "@/static-data/technologies";
+
 
 export default function TechStack() {
     const router = useRouter();
+
+    const [placedTechnology, setPlacedTechnology] = useState<string | null>(null);
+
+    const techImages = technologies.map(
+        (technology) => `https://cdn.simpleicons.org/${technology.image}/${technology.image}`,
+    );
 
     return (
         <div className={"w-screen h-screen relative"}>
@@ -17,9 +24,28 @@ export default function TechStack() {
                     <span className={"text-[#414141] w-full text-start p-3 text-2xl"}>Enchant</span>
                     <div className={"flex flex-row items-stretch w-full"}>
                         <div className={"w-[40%] h-full flex flex-col items-center justify-center gap-3"}>
-                            <Image src={"/textures/enchant_book.webp"} alt={"book"} width={88} height={88} className={"-mt-4"}/>
+
+                            {
+                                !placedTechnology
+                                    ?
+                                    <Image src={"/textures/enchantment_book_closed.png"} alt={"book_closed"} width={88} height={88} className={"-mt-4 h-24 w-14"}/>
+                                    :
+                                    <Image src={"/textures/enchantment_book_opened.png"} alt={"book_opened"} width={144} height={88} className={"-mt-4 h-24 w-28"}/>
+                            }
+
+
                             <div className={"flex flex-row"}>
-                                <InventoryCell/>
+                                {
+                                    placedTechnology
+                                        ?
+                                        <InventoryCell isSelected={true} handleClick={() => setPlacedTechnology(null)} itemAsImage={
+                                            <div className={"p-2"}>
+                                                <img src={placedTechnology} alt={`selected_tech`} width={100} height={100}/>
+                                            </div>
+                                        }/>
+                                        :
+                                        <InventoryCell/>
+                                }
                                 <InventoryCell itemAsImage={
                                     <Image src={"/textures/lapis.webp"} alt={"lapis"} width={100} height={100}/>
                                 }/>
@@ -27,17 +53,37 @@ export default function TechStack() {
                         </div>
 
                         <div className={"w-[60%] h-[200px] overflow-y-scroll -mt-12 bg-[#534938] border-4 border-[#6D6149] border-r-white border-b-white mr-4"}>
-                            <ProjectWithTech/>
-                            <ProjectWithTech/>
+                            {
+                                !placedTechnology
+                                    ?
+                                    <div className={"w-full h-full flex items-center justify-center text-xl"}>
+                                        Select technology
+                                    </div>
+                                    :
+                                    <>
+                                        <ProjectWithTech/>
+                                        <ProjectWithTech/>
+                                    </>
+                            }
+
                         </div>
                     </div>
 
                     <span className={"text-[#414141] w-full text-start px-3 text-2xl -mt-2"}>Technologies</span>
-                    <div className={"flex flex-row items-center flex-wrap px-3 -mt-1"}>
+                    <div className={"flex flex-row items-center flex-wrap px-3 -mt-1 overflow-y-scroll max-h-[178.5px]"}>
                         {
-                            Array.from({ length: (9 * 3)}).map((_, key) => {
+                            Array.from({ length: 9 * 3 }).map((_, key) => {
                                 return (
-                                    <InventoryCell key={key}/>
+                                    <InventoryCell
+                                        key={key}
+                                        isSelected={techImages[key] == placedTechnology}
+                                        handleClick={() => setPlacedTechnology(techImages[key])}
+                                        itemAsImage={
+                                            <div className={"p-2"}>
+                                                <img src={techImages[key]} alt={`tech_${key}`} width={100} height={100}/>
+                                            </div>
+                                        }
+                                    />
                                 );
                             })
                         }
@@ -47,7 +93,22 @@ export default function TechStack() {
                         {
                             Array.from({ length: 9}).map((_, key) => {
                                 return (
-                                    <InventoryCell key={key}/>
+                                    <div key={key}>
+                                        {
+                                            techImages[9*3+key] ?
+                                            <InventoryCell
+                                                isSelected={techImages[9*3+key] == placedTechnology}
+                                                handleClick={() => setPlacedTechnology(techImages[(9*3+key)])}
+                                                itemAsImage={
+                                                    <div className={"p-2"}>
+                                                        <img src={techImages[9*3 + key]} alt={`tech_${key}`} width={100} height={100}/>
+                                                    </div>
+                                                }
+                                            /> :
+                                            <InventoryCell key={key}/>
+                                        }
+                                    </div>
+
                                 );
                             })
                         }
