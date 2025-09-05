@@ -5,6 +5,7 @@ import ProjectWithTech from "@/components/project-with-tech/ProjectWithTech";
 import InventoryCell from "@/components/inventory-cell/InventoryCell";
 import {useState} from "react";
 import {technologies} from "@/static-data/technologies";
+import {projects} from "@/static-data/projects";
 
 
 export default function TechStack() {
@@ -15,6 +16,15 @@ export default function TechStack() {
     const techImages = technologies.map(
         (technology) => `https://cdn.simpleicons.org/${technology.image}/${technology.image}`,
     );
+
+    const formatTextNormalized = (text: string) => {
+        return `${text[0].toUpperCase()}${text.slice(1, text.length)}`;
+    }
+
+    const determineTooltip = (imageUrl: string) => {
+        const tech = String(imageUrl.split("/")[imageUrl.split("/").length - 1]);
+        return formatTextNormalized(tech);
+    }
 
     return (
         <div className={"w-screen h-screen relative"}>
@@ -38,7 +48,7 @@ export default function TechStack() {
                                 {
                                     placedTechnology
                                         ?
-                                        <InventoryCell isSelected={true} handleClick={() => setPlacedTechnology(null)} itemAsImage={
+                                        <InventoryCell tooltip={determineTooltip(placedTechnology)} isSelected={true} handleClick={() => setPlacedTechnology(null)} itemAsImage={
                                             <div className={"p-2"}>
                                                 <img src={placedTechnology} alt={`selected_tech`} width={100} height={100}/>
                                             </div>
@@ -46,7 +56,7 @@ export default function TechStack() {
                                         :
                                         <InventoryCell/>
                                 }
-                                <InventoryCell itemAsImage={
+                                <InventoryCell tooltip={"Lapis Lazuli"} itemAsImage={
                                     <Image src={"/textures/lapis.webp"} alt={"lapis"} width={100} height={100}/>
                                 }/>
                             </div>
@@ -61,8 +71,27 @@ export default function TechStack() {
                                     </div>
                                     :
                                     <>
-                                        <ProjectWithTech/>
-                                        <ProjectWithTech/>
+                                        {
+                                            (() => {
+                                                const projectsFiltered = projects.filter(
+                                                    p => p.technologies.includes(
+                                                        placedTechnology.split("/")[placedTechnology.split('/').length - 1]
+                                                    )
+                                                );
+
+                                                if (projectsFiltered.length) {
+                                                    return projectsFiltered.map((project, key) => (
+                                                        <ProjectWithTech link={project.github} title={project.title} index={key + 1} key={key} />
+                                                    ))
+                                                }
+
+                                                return (
+                                                    <div className={"w-full h-full flex items-center justify-center text-xl"}>
+                                                        No config for this tech
+                                                    </div>
+                                                );
+                                            })()
+                                        }
                                     </>
                             }
 
@@ -70,12 +99,13 @@ export default function TechStack() {
                     </div>
 
                     <span className={"text-[#414141] w-full text-start px-3 text-2xl -mt-2"}>Technologies</span>
-                    <div className={"flex flex-row items-center flex-wrap px-3 -mt-1 overflow-y-scroll max-h-[178.5px]"}>
+                    <div className={"flex flex-row items-center flex-wrap px-3 -mt-1 max-h-[178.5px]"}>
                         {
                             Array.from({ length: 9 * 3 }).map((_, key) => {
                                 return (
                                     <InventoryCell
                                         key={key}
+                                        tooltip={determineTooltip(techImages[key])}
                                         isSelected={techImages[key] == placedTechnology}
                                         handleClick={() => setPlacedTechnology(techImages[key])}
                                         itemAsImage={
@@ -97,6 +127,7 @@ export default function TechStack() {
                                         {
                                             techImages[9*3+key] ?
                                             <InventoryCell
+                                                tooltip={determineTooltip(techImages[9*3+key])}
                                                 isSelected={techImages[9*3+key] == placedTechnology}
                                                 handleClick={() => setPlacedTechnology(techImages[(9*3+key)])}
                                                 itemAsImage={
