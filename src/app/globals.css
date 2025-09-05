@@ -24,3 +24,27 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+
+/* Hide the default blinking caret */
+input.fake-caret {
+  caret-color: transparent;
+  position: relative;
+  font-family: monospace;
+}
+
+/* Draw a fake blinking underscore */
+input.fake-caret::after {
+  content: "_";
+  position: absolute;
+  right: 8px; /* adjust padding match */
+  animation: blink 1s steps(1) infinite;
+  color: white;
+  pointer-events: none;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+

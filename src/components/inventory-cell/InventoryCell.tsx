@@ -1,4 +1,5 @@
 import {ReactNode, useCallback, useRef} from "react";
+import Tooltip from "@/components/tooltip/Tooltip";
 
 export default function InventoryCell({ itemAsImage, handleClick, isSelected, tooltip }: { tooltip?: string, itemAsImage?: ReactNode, handleClick?: () => void, isSelected?: boolean }) {
     const playAudioAndClick = useCallback(() => {
@@ -25,12 +26,7 @@ export default function InventoryCell({ itemAsImage, handleClick, isSelected, to
         `}>
             {itemAsImage}
             {
-                tooltip &&
-                <div className={`absolute z-10 -right-10 -top-10 bg-[#180615] border-2 border-black w-fit h-fit hidden group-hover:block`}>
-                    <div className={"w-full h-full border-4 border-[#21033D] p-2"}>
-                        {tooltip}
-                    </div>
-                </div>
+                tooltip && <Tooltip text={tooltip} />
             }
         </div>
     );

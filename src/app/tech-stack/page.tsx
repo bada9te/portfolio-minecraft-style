@@ -22,8 +22,12 @@ export default function TechStack() {
     }
 
     const determineTooltip = (imageUrl: string) => {
-        const tech = String(imageUrl.split("/")[imageUrl.split("/").length - 1]);
-        return formatTextNormalized(tech);
+        try {
+            const tech = String(imageUrl.split("/")[imageUrl.split("/").length - 1]);
+            return formatTextNormalized(tech);
+        } catch (e) {
+            return "";
+        }
     }
 
     return (
@@ -49,8 +53,8 @@ export default function TechStack() {
                                     placedTechnology
                                         ?
                                         <InventoryCell tooltip={determineTooltip(placedTechnology)} isSelected={true} handleClick={() => setPlacedTechnology(null)} itemAsImage={
-                                            <div className={"p-2"}>
-                                                <img src={placedTechnology} alt={`selected_tech`} width={100} height={100}/>
+                                            <div className={"p-0"}>
+                                                <img src={`/icons/${placedTechnology}`} alt={`selected_tech`} width={100} height={100}/>
                                             </div>
                                         }/>
                                         :
@@ -75,7 +79,7 @@ export default function TechStack() {
                                             (() => {
                                                 const projectsFiltered = projects.filter(
                                                     p => p.technologies.includes(
-                                                        placedTechnology.split("/")[placedTechnology.split('/').length - 1]
+                                                        placedTechnology.split(".")[0]
                                                     )
                                                 );
 
@@ -105,13 +109,15 @@ export default function TechStack() {
                                 return (
                                     <InventoryCell
                                         key={key}
-                                        tooltip={determineTooltip(techImages[key])}
-                                        isSelected={techImages[key] == placedTechnology}
-                                        handleClick={() => setPlacedTechnology(techImages[key])}
+                                        tooltip={technologies[key]?.title}
+                                        isSelected={technologies[key]?.image == placedTechnology}
+                                        handleClick={() => setPlacedTechnology(technologies[key]?.image)}
                                         itemAsImage={
-                                            <div className={"p-2"}>
-                                                <img src={techImages[key]} alt={`tech_${key}`} width={100} height={100}/>
-                                            </div>
+                                            technologies[key]?.image ?
+                                            <div className={"p-0"}>
+                                                <img src={`/icons/${technologies[key]?.image}`} alt={`tech_${key}`} width={100} height={100}/>
+                                            </div> :
+                                                undefined
                                         }
                                     />
                                 );
@@ -128,11 +134,11 @@ export default function TechStack() {
                                             techImages[9*3+key] ?
                                             <InventoryCell
                                                 tooltip={determineTooltip(techImages[9*3+key])}
-                                                isSelected={techImages[9*3+key] == placedTechnology}
-                                                handleClick={() => setPlacedTechnology(techImages[(9*3+key)])}
+                                                isSelected={technologies[9*3 + key].image == placedTechnology}
+                                                handleClick={() => setPlacedTechnology(technologies[9*3 + key].image)}
                                                 itemAsImage={
-                                                    <div className={"p-2"}>
-                                                        <img src={techImages[9*3 + key]} alt={`tech_${key}`} width={100} height={100}/>
+                                                    <div className={"p-0"}>
+                                                        <img src={`/icons/${technologies[9*3 + key]?.image}`} alt={`tech_${key}`} width={100} height={100}/>
                                                     </div>
                                                 }
                                             /> :
