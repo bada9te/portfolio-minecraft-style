@@ -7,6 +7,7 @@ import MainMenuButton from "@/components/main-menu-btn/MainMenuButton";
 import {Github} from "lucide-react";
 import gsap from "gsap";
 import Link from "next/link";
+import CheckScreenOrientation from "@/components/check-screen-orientation/CheckScreenOrientation";
 
 // avoid default 404 page
 export default function RedirectPage() {
@@ -43,6 +44,10 @@ export default function RedirectPage() {
 
     return (
         <>
+            <CheckScreenOrientation/>
+            <div className={"w-full h-full page-block"}>
+
+            </div>
             <div className={`${modalIsOpened ? "opacity-0" : "opacity-100"} relative w-fit h-fit -mt-24 z-10`}>
                 <Image
                     src={"/texts/title_pc.png"}
