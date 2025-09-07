@@ -6,6 +6,8 @@ import {projects} from "@/static-data/projects";
 import ProjectAsWorld from "@/components/project-as-world/ProjectAsWorld";
 import {useState} from "react";
 import CheckScreenOrientation from "@/components/check-screen-orientation/CheckScreenOrientation";
+import MainMenuButton from "@/components/main-menu-btn/MainMenuButton";
+import Link from "next/link";
 
 export default function Projects() {
     const router = useRouter();
@@ -22,6 +24,16 @@ export default function Projects() {
                 onClose={() => router.push("/")}
                 headerSearchBar={
                     <InputBar/>
+                }
+                additionalButtons={
+                    <Link href={selectedProject?.github || ""} target={"_blank"} className={"w-full"}>
+                        <MainMenuButton
+                            handleClickAction={() => {}}
+                            disabled={selectedProject == null}
+                        >
+                            Github
+                        </MainMenuButton>
+                    </Link>
                 }
             >
                 <div className={"w-full h-full overflow-y-scroll max-w-[844px] flex flex-col gap-3 pt-6"}>
