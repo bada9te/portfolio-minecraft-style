@@ -1,4 +1,6 @@
+"use client"
 import { useEffect } from "react";
+import Image from "next/image";
 
 export default function CheckScreenOrientation() {
     useEffect(() => {
@@ -33,8 +35,9 @@ export default function CheckScreenOrientation() {
     }, []);
 
     return (
-        <span className="portrait-message absolute inset-0 bg-black font-minecraft top-0 left-0 w-full h-full justify-center items-center text-white text-center z-50">
+        <div className="portrait-message hidden absolute inset-0 bg-black font-minecraft top-0 left-0 w-full h-full flex-col justify-center items-center text-white text-center z-40">
           Please rotate your device to landscape mode...
-        </span>
+            <Image src={"/bgs/heartbeat.gif"} alt={"heartbeat"} width={1000} height={700} className={"z-50 w-64 h-10 mt-3"}/>
+        </div>
     );
 }

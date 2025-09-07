@@ -18,7 +18,7 @@ export default function OverlayModal({ title, onClose, isOpen, closeButtonTitle,
     }
 
     return (
-        <div className="w-screen h-screen absolute top-0 left-0 z-50">
+        <div className="w-screen h-screen absolute top-0 left-0 z-30">
             <div className="grid w-full h-full" style={{ gridTemplateRows: "15% 70% 15%" }}>
                 <div className="backdrop-blur-sm flex flex-col items-center justify-center text-2xl gap-2">
                     {title}
