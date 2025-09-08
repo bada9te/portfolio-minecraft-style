@@ -23,7 +23,7 @@ export default function Projects() {
                 closeButtonTitle={"Back"}
                 onClose={() => router.push("/")}
                 headerSearchBar={
-                    <InputBar/>
+                    <div className={"hidden lg:flex"}><InputBar/></div>
                 }
                 additionalButtons={
                     <Link href={selectedProject?.github || ""} target={"_blank"} className={"w-full"}>
@@ -36,7 +36,7 @@ export default function Projects() {
                     </Link>
                 }
             >
-                <div className={"w-full h-full overflow-y-scroll max-w-[844px] flex flex-col gap-3 pt-6"}>
+                <div className={"w-full h-full overflow-y-scroll max-w-[844px] flex flex-col items-center gap-3 pt-6 px-10"}>
                     {
                         projects.map((item, index) => (
                             <ProjectAsWorld
