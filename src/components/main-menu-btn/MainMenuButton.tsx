@@ -6,7 +6,7 @@ export default function MainMenuButton({ children, handleClickAction, disabled }
 
     const handleClickBtn = useCallback(() => {
         if (audioRef.current) {
-            audioRef.current.play();
+            audioRef.current.play().catch(console.error);
         }
     }, [audioRef]);
 

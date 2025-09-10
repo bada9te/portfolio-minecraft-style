@@ -110,7 +110,7 @@ export default function EnchantmentTable({ placedTechnology, setPlacedTechnology
                                     <InventoryCell
                                         key={key}
                                         tooltip={technologies[key]?.title}
-                                        isSelected={technologies[key]?.image == placedTechnology && placedTechnology !== null}
+                                        isSelected={Boolean(technologies[key]?.image == placedTechnology && placedTechnology)}
                                         handleClick={() => setPlacedTechnology(technologies[key]?.image)}
                                         itemAsImage={
                                             technologies[key]?.image ?
