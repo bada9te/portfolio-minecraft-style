@@ -1,5 +1,6 @@
 import {projects} from "@/static-data/projects";
 import Image from "next/image";
+import {useRouter} from "next/navigation";
 
 type TProjectAsWorldProps = typeof projects[0];
 
@@ -10,6 +11,15 @@ interface IProjectAsWorldStateProps {
 }
 
 export default function ProjectAsWorld({ project, isSelected, handleClick }: IProjectAsWorldStateProps) {
+    const router = useRouter();
+
+    const handleRenderWorld = () => {
+        const audio = new Audio('/audio/menu_click.mp3');
+        audio.play().catch(console.error);
+
+        router.replace(`/render-world/${project.title.replaceAll(' ', '')}`)
+    }
+
     return (
         <div
             className={`
@@ -24,6 +34,7 @@ export default function ProjectAsWorld({ project, isSelected, handleClick }: IPr
             <div className={"w-24 h-24 lg:w-32 lg:h-32 bg-white/50 absolute left-1 top-1 hidden group-hover:block"}>
                 <div className={"w-full h-full flex items-center justify-center relative"}>
                     <Image
+                        onClick={handleRenderWorld}
                         src={"/textures/play_blue.png"}
                         alt={"play_gray"}
                         width={500}
