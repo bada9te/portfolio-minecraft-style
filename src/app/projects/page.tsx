@@ -23,7 +23,7 @@ export default function Projects() {
                 closeButtonTitle={"Back"}
                 onClose={() => router.push("/")}
                 headerSearchBar={
-                    <div className={"hidden lg:flex"}><InputBar/></div>
+                    <div className={"hidden lg:flex w-full items-center justify-center"}><InputBar/></div>
                 }
                 additionalButtons={
                     <Link href={selectedProject?.github || ""} target={"_blank"} className={"w-full"}>
