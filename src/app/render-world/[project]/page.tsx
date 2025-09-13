@@ -73,16 +73,44 @@ export default function RenderWorldPage({ params }: { params: { project: string 
                     {
                         // continue button (navigate to the project)
                         showContinueButton &&
-                        <Link
-                            href={targetProject?.deployedHttpAddress || targetProject?.github as string}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={"mt-10"}
-                        >
-                            <div className={"min-w-48 h-16 bg-[#968682] border-3 border-[#BDB2AF] relative border-b-[#3A3638] border-r-[#3A3638] flex items-center justify-center"}>
-                                {targetProject?.title}
+                        <>
+                            <div className={"hidden flex-col gap-4 items-center justify-center lg:flex"}>
+                                <div className={"flex flex-row gap-3 items-center justify-center mt-4"}>
+                                    <div className={`h-2 w-[18px] ${false ? "bg-gradient-to-r from-[#3B572D] via-[#1A281D] to-[#3B572D]" : "bg-[#7EBD4D]"}`}></div>
+                                    Publicly available at GitHub
+                                </div>
+                                <div className={"flex flex-row gap-3 items-center justify-center mt-4"}>
+                                    <div className={`h-2 w-[18px] ${true ? "bg-gradient-to-r from-[#3B572D] via-[#1A281D] to-[#3B572D]" : "bg-[#7EBD4D]"}`}></div>
+                                    Accessible via https
+                                </div>
                             </div>
-                        </Link>
+
+
+                            <div className={"hidden lg:flex flex-row gap-4"}>
+                                <Link
+                                    href={targetProject?.deployedHttpAddress || targetProject?.github as string}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={"mt-10 hidden lg:block"}
+                                >
+                                    <div className={"min-w-48 h-16 bg-[#968682] border-3 border-[#BDB2AF] relative border-b-[#3A3638] border-r-[#3A3638] flex items-center justify-center"}>
+                                        View at GitHub
+                                    </div>
+                                </Link>
+
+                                <Link
+                                    href={targetProject?.deployedHttpAddress || targetProject?.github as string}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={"mt-10 hidden lg:block"}
+                                >
+                                    <div className={"min-w-48 h-16 bg-[#968682] border-3 border-[#BDB2AF] relative border-b-[#3A3638] border-r-[#3A3638] flex items-center justify-center"}>
+                                        {targetProject?.deployedHttpAddress?.slice(0, 14)}...
+                                    </div>
+                                </Link>
+                            </div>
+                        </>
+
                     }
 
                     { /* MOBILE LAYOUT */ }
@@ -91,7 +119,7 @@ export default function RenderWorldPage({ params }: { params: { project: string 
                         alt={"title"}
                         width={1920}
                         height={1080}
-                        className={"w-[600px] lg:w-[800px] mt-10"}
+                        className={"w-[600px] lg:w-[800px] mt-10 block lg:hidden"}
                     />
 
                     <div
@@ -102,18 +130,27 @@ export default function RenderWorldPage({ params }: { params: { project: string 
                             border-3 px-3 pb-3
                         `}
                     >
-                        <span className={"text-[#464646] mt-2 text-lg"}>Generating world...</span>
+                        <span className={"text-[#464646] mt-2 text-lg"}>{mobileGrayTarget <= 21 ? "Generating world..." : "Generation completed"}</span>
 
-                        <div className={"relative w-full h-full bg-black border-white border-t-[#535354] border-l-[#535354] border-3 px-7 pt-2"}>
-                            <span>Generating the terrain and preparing github links...</span>
+                        <div className={"relative w-full min-w-lg h-full bg-black border-white border-t-[#535354] border-l-[#535354] border-3 px-7 pt-2"}>
+                            {
+                                mobileGrayTarget <= 21 &&
+                                <span>Generating the terrain and preparing github links...</span>
+                            }
 
-                            <div className={"absolute bottom-6 -translate-x-1/2 left-1/2 flex flex-row gap-[3px] bg-black"}>
-                                {
-                                    Array.from({ length: 23 }).map((_, i) => (
-                                        <div key={i} className={`h-2 w-[18px] ${mobileGrayTarget < i ? "bg-gradient-to-r from-[#3B572D] via-[#1A281D] to-[#3B572D]" : "bg-[#7EBD4D]"}`}></div>
-                                    ))
-                                }
-                            </div>
+                            {
+                                mobileGrayTarget <= 21 &&
+                                <div className={"absolute bottom-6 -translate-x-1/2 left-1/2 flex flex-row gap-[3px] bg-black"}>
+                                    {
+                                        Array.from({ length: 23 }).map((_, i) => (
+                                            <div key={i} className={`h-2 w-[18px] ${mobileGrayTarget < i ? "bg-gradient-to-r from-[#3B572D] via-[#1A281D] to-[#3B572D]" : "bg-[#7EBD4D]"}`}></div>
+                                        ))
+                                    }
+                                </div>
+                            }
+
+
+
                         </div>
                     </div>
                 </div>
