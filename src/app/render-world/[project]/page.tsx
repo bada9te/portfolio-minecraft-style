@@ -39,6 +39,7 @@ export default function RenderWorldPage({ params }: { params: { project: string 
             setMobileGrayTarget(prev => {
                 if (prev + 1 >= 23) {
                     clearInterval(iId);
+                    handleShowLinksWithButtons();
                     return prev;
                 }
                 return prev + 1;
@@ -47,7 +48,8 @@ export default function RenderWorldPage({ params }: { params: { project: string 
         return () => clearInterval(iId);
     }, []);
 
-    const handleVideoEnded = () => {
+    const handleShowLinksWithButtons = () => {
+        console.log("show buttons")
         setShowContinueButton(true);
     };
 
@@ -65,7 +67,7 @@ export default function RenderWorldPage({ params }: { params: { project: string 
 
                     {
                         !showContinueButton &&
-                        <video width={200} height={200} autoPlay muted loop={false} onEnded={handleVideoEnded} className={"hidden lg:block"}>
+                        <video width={200} height={200} autoPlay muted loop={false} onEnded={handleShowLinksWithButtons} className={"hidden lg:block"}>
                             <source src="/bgs/chunk_loading.mp4" type="video/mp4" />
                         </video>
                     }
@@ -132,7 +134,7 @@ export default function RenderWorldPage({ params }: { params: { project: string 
                     >
                         <span className={"text-[#464646] mt-2 text-lg"}>{mobileGrayTarget <= 21 ? "Generating world..." : "Generation completed"}</span>
 
-                        <div className={"relative w-full min-w-lg h-full bg-black border-white border-t-[#535354] border-l-[#535354] border-3 px-7 pt-2"}>
+                        <div className={"relative w-full min-w-[546px] h-full bg-black border-white border-t-[#535354] border-l-[#535354] border-3 px-7 pt-2"}>
                             {
                                 mobileGrayTarget <= 21 &&
                                 <span>Generating the terrain and preparing github links...</span>
@@ -149,8 +151,49 @@ export default function RenderWorldPage({ params }: { params: { project: string 
                                 </div>
                             }
 
+                            {
+                                mobileGrayTarget > 21 &&
+                                <div>
+                                    {
+                                        // continue button (navigate to the project)
+                                        showContinueButton &&
+                                        <>
+                                            <div className={"flex flex-col gap-0 items-center justify-center lg:hidden mb-4 mx-3"}>
+                                                <div className={"flex flex-row gap-3 items-center justify-center mt-4"}>
+                                                    <div className={`h-2 w-[18px] ${false ? "bg-gradient-to-r from-[#3B572D] via-[#1A281D] to-[#3B572D]" : "bg-[#7EBD4D]"}`}></div>
+                                                    Publicly available at GitHub
+                                                    <Link
+                                                        href={targetProject?.github || targetProject?.deployedHttpAddress as string}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className={"mt-0"}
+                                                    >
+                                                        <div className={"min-w-40 h-[33px] bg-[#968682] border-3 border-[#BDB2AF] relative border-b-[#3A3638] border-r-[#3A3638] flex items-center justify-center"}>
+                                                            View at GitHub
+                                                        </div>
+                                                    </Link>
+                                                </div>
+                                                <div className={"flex flex-row gap-3 items-center justify-between mt-4 w-full"}>
+                                                    <div className={`h-2 w-[18px] ${true ? "bg-gradient-to-r from-[#3B572D] via-[#1A281D] to-[#3B572D]" : "bg-[#7EBD4D]"}`}></div>
+                                                    Accessible online via https
+                                                    <Link
+                                                        href={targetProject?.deployedHttpAddress || targetProject?.github as string}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className={"mt-0"}
+                                                    >
+                                                        <div className={"min-w-40 h-[33px] bg-[#968682] border-3 border-[#BDB2AF] relative border-b-[#3A3638] border-r-[#3A3638] flex items-center justify-center"}>
+                                                            {targetProject?.deployedHttpAddress?.slice(0, 14)}...
+                                                        </div>
+                                                    </Link>
+                                                </div>
+                                            </div>
 
+                                        </>
 
+                                    }
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>

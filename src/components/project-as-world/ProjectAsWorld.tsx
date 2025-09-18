@@ -8,9 +8,10 @@ interface IProjectAsWorldStateProps {
     project: TProjectAsWorldProps;
     isSelected: boolean;
     handleClick: () => void;
+    selectionOpensWorld?: boolean;
 }
 
-export default function ProjectAsWorld({ project, isSelected, handleClick }: IProjectAsWorldStateProps) {
+export default function ProjectAsWorld({ project, isSelected, handleClick, selectionOpensWorld }: IProjectAsWorldStateProps) {
     const router = useRouter();
 
     const handleRenderWorld = () => {
@@ -27,7 +28,7 @@ export default function ProjectAsWorld({ project, isSelected, handleClick }: IPr
                 relative w-full h-fit p-1 flex flex-row items-start justify-start border-4
                 ${isSelected ? "border-white bg-black" : "border-transparent"}
             `}
-            onClick={handleClick}
+            onClick={selectionOpensWorld ? handleRenderWorld : handleClick}
         >
             <Image src={project.icon} alt={`logo_${project.title}`} width={500} height={500} className={"w-24 h-24 lg:w-32 lg:h-32"}/>
 

@@ -36,7 +36,7 @@ export default function Projects() {
                     </Link>
                 }
             >
-                <div className={"w-full h-full overflow-y-scroll max-w-[844px] flex flex-col items-center gap-3 pt-6 px-10"}>
+                <div className={"w-full h-full overflow-y-scroll max-w-[844px] flex-col items-center gap-3 pt-6 px-10 hidden lg:flex"}>
                     {
                         projects.map((item, index) => (
                             <ProjectAsWorld
@@ -44,6 +44,20 @@ export default function Projects() {
                                 project={item}
                                 isSelected={selectedProject?.title == item.title}
                                 handleClick={() => setSelectedProject(item)}
+                            />
+                        ))
+                    }
+                </div>
+
+                <div className={"w-full h-full overflow-y-scroll max-w-[844px] flex lg:hidden flex-col items-center gap-3 pt-6 px-10"}>
+                    {
+                        projects.map((item, index) => (
+                            <ProjectAsWorld
+                                key={index}
+                                project={item}
+                                isSelected={selectedProject?.title == item.title}
+                                handleClick={() => setSelectedProject(item)}
+                                selectionOpensWorld
                             />
                         ))
                     }
