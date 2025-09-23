@@ -8,16 +8,14 @@ export default function SwitchFullscreen() {
 
     useEffect(() => {
         const handle = (e) => {
-            if (isFullScreen) {
-                setIsFullScreen(false);
-            }
+            setIsFullScreen(false)
         }
-        document.addEventListener("fullscreenchange", handle);
+        document.addEventListener("visibilitychange", handle);
 
         return () => {
-            document.removeEventListener("fullscreenchange", handle);
+            document.removeEventListener("visibilitychange", handle);
         }
-    }, [isFullScreen]);
+    }, []);
 
     useEffect(() => {
         setMounted(true);

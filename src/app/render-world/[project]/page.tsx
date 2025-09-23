@@ -58,7 +58,12 @@ export default function RenderWorldPage({ params }: { params: { project: string 
             <CheckScreenOrientation/>
             <div className="bg-transparent lg:bg-[url(/bgs/dirt.png)] w-screen h-screen z-20 text-white flex flex-col justify-center items-center">
                 <div className="flex flex-col gap-3 items-center justify-center">
+
                     {/* PC LAYOUT */}
+                    <div className={"w-full h-fit hidden lg:flex items-center justify-center mb-7"}>
+                        <Image src={"/textures/dirt_block.webp"} alt={"dirt_block"} width={140} height={140}/>
+                    </div>
+
                     <span className="text-xl hidden lg:block">{
                         showContinueButton ?
                             "Ready to explore the project":
@@ -108,6 +113,15 @@ export default function RenderWorldPage({ params }: { params: { project: string 
                                 >
                                     <div className={"min-w-48 h-16 bg-[#968682] border-3 border-[#BDB2AF] relative border-b-[#3A3638] border-r-[#3A3638] flex items-center justify-center"}>
                                         {targetProject?.deployedHttpAddress?.slice(0, 14)}...
+                                    </div>
+                                </Link>
+
+                                <Link
+                                    href={"/projects"}
+                                    className={"mt-10 hidden lg:block"}
+                                >
+                                    <div className={"min-w-48 h-16 bg-[#968682] border-3 border-[#BDB2AF] relative border-b-[#3A3638] border-r-[#3A3638] flex items-center justify-center"}>
+                                        {`<< Go back`}
                                     </div>
                                 </Link>
                             </div>
