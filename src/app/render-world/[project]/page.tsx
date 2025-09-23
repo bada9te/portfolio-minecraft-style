@@ -24,6 +24,7 @@ export default function RenderWorldPage({ params }: { params: { project: string 
             setGrayTarget(prev => {
                 if (prev + 1 >= 16) {
                     clearInterval(iId);
+                    handleShowLinksWithButtons();
                     return prev;
                 }
                 return prev + 1;
@@ -39,7 +40,6 @@ export default function RenderWorldPage({ params }: { params: { project: string 
             setMobileGrayTarget(prev => {
                 if (prev + 1 >= 23) {
                     clearInterval(iId);
-                    handleShowLinksWithButtons();
                     return prev;
                 }
                 return prev + 1;
@@ -60,9 +60,12 @@ export default function RenderWorldPage({ params }: { params: { project: string 
                 <div className="flex flex-col gap-3 items-center justify-center">
 
                     {/* PC LAYOUT */}
-                    <div className={"w-full h-fit hidden lg:flex items-center justify-center mb-7"}>
-                        <Image src={"/textures/dirt_block.webp"} alt={"dirt_block"} width={140} height={140}/>
-                    </div>
+                    {
+                        showContinueButton &&
+                        <div className={"w-full h-fit hidden lg:flex items-center justify-center mb-7"}>
+                            <Image src={"/textures/dirt_block.webp"} alt={"dirt_block"} width={140} height={140}/>
+                        </div>
+                    }
 
                     <span className="text-xl hidden lg:block">{
                         showContinueButton ?
@@ -177,11 +180,7 @@ export default function RenderWorldPage({ params }: { params: { project: string 
 
                             {
                                 mobileGrayTarget > 21 &&
-                                <div>
-                                    {
-                                        // continue button (navigate to the project)
-                                        showContinueButton &&
-                                        <>
+
                                             <div className={"flex flex-col gap-0 items-center justify-center lg:hidden mb-4 mx-3"}>
                                                 <div className={"flex flex-row gap-3 items-center justify-center mt-4"}>
                                                     <div className={`h-2 w-[18px] ${false ? "bg-gradient-to-r from-[#3B572D] via-[#1A281D] to-[#3B572D]" : "bg-[#7EBD4D]"}`}></div>
@@ -213,10 +212,6 @@ export default function RenderWorldPage({ params }: { params: { project: string 
                                                 </div>
                                             </div>
 
-                                        </>
-
-                                    }
-                                </div>
                             }
                         </div>
                     </div>
