@@ -47,11 +47,19 @@ export default function About() {
             <CheckScreenOrientation/>
             <OverlayModal title={"About me"} isOpen={true} onClose={() => router.push("/")} closeButtonTitle={"Done"}>
                 <div className={"max-w-xl text-start flex flex-col gap-2 h-full overflow-y-scroll py-20"}>
+                    <div className={"w-full items-center justify-center flex mt-4"}>
+                        <Image src={"/textures/villager_head.png"} alt={"pickaxe"} width={64} height={64}/>
+                    </div>
+
                     <span>My name is Bohdan, I am a fullstack JavaScript / TypeScript developer.</span>
                     <span>2+ years of commercial experience (as a fullstack web including Web-3). </span>
                     <span>Ready to contribute to your projects! </span>
 
-                    <table className={"mt-4"}>
+                    <div className={"w-full items-center justify-center flex mt-4"}>
+                        <Image src={"/textures/pickaxe.webp"} alt={"pickaxe"} width={64} height={64}/>
+                    </div>
+
+                    <table>
                         <caption>Programming languages</caption>
                         <thead>
                             <tr>
@@ -79,8 +87,14 @@ export default function About() {
                     </table>
 
 
-                    <table className={"mt-4"}>
-                        <caption>Libs / Frameworks / Tools</caption>
+                    <div className={"w-full items-center justify-center flex mt-4"}>
+                        <Image src={"/textures/crafting_table.webp"} alt={"crafting_table"} width={64} height={64}/>
+                    </div>
+
+                    <table>
+                        <caption>
+                            Libs / Frameworks / Tools
+                        </caption>
                         <thead>
                             <tr>
                                 <th className={"text-start"}>Tech</th>
@@ -107,8 +121,12 @@ export default function About() {
                     </table>
 
 
-                    <table className={"mt-4"}>
-                        <caption>Misc</caption>
+                    <div className={"w-full items-center justify-center flex mt-4"}>
+                        <Image src={"/textures/water_bucket.webp"} alt={"pickaxe"} width={64} height={64}/>
+                    </div>
+
+                    <table>
+                        <caption>Miscellaneous</caption>
                         <thead>
                             <tr>
                                 <th className={"text-start"}>Misc</th>

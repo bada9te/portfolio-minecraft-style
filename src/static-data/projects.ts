@@ -1,4 +1,20 @@
 export const projects = [
+    // utlp landing
+    {
+        icon: "/projects/utlp/logo.png",
+        title: "UTLP Landing",
+        description: "Landing for the Ultimate Technologies, with pages statically exported",
+        github: "",
+        deployedHttpAddress: "https://ut-lp-landing-production.up.railway.app",
+        technologies: [
+            "ts",
+            "nextjs",
+            "react",
+            "mongodb",
+            "npm",
+        ],
+    },
+
     // mfn server
     {
         icon: "/projects/mfn/logo.png",

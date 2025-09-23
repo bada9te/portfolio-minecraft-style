@@ -129,9 +129,19 @@ export default function RenderWorldPage({ params }: { params: { project: string 
                             flex flex-col items-center justify-start
                             lg:hidden max-w-xl 
                             bg-[#C5C5C5] min-h-48 min-w-[500px] -mt-10 border-white border-b-[#535354] border-r-[#535354]
-                            border-3 px-3 pb-3
+                            border-3 px-3 pb-3 relative
                         `}
                     >
+                        <Link href={"/projects"} className={"absolute top-0 right-4 cursor-pointer shadow-2xl"}>
+                            <Image
+                                src={"/textures/arrow_back.png"}
+                                alt={"arrow_back"}
+                                className={"w-7 h-7"}
+                                width={100}
+                                height={100}
+                            />
+                        </Link>
+
                         <span className={"text-[#464646] mt-2 text-lg"}>{mobileGrayTarget <= 21 ? "Generating world..." : "Generation completed"}</span>
 
                         <div className={"relative w-full min-w-[546px] h-full bg-black border-white border-t-[#535354] border-l-[#535354] border-3 px-7 pt-2"}>
