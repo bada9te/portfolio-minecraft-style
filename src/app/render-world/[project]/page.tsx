@@ -86,11 +86,11 @@ export default function RenderWorldPage({ params }: { params: { project: string 
                         <>
                             <div className={"hidden flex-col gap-4 items-center justify-center lg:flex"}>
                                 <div className={"flex flex-row gap-3 items-center justify-center mt-4"}>
-                                    <div className={`h-2 w-[18px] ${false ? "bg-gradient-to-r from-[#3B572D] via-[#1A281D] to-[#3B572D]" : "bg-[#7EBD4D]"}`}></div>
+                                    <div className={`h-2 w-[18px] ${!targetProject?.github ? "bg-gradient-to-r from-[#3B572D] via-[#1A281D] to-[#3B572D]" : "bg-[#7EBD4D]"}`}></div>
                                     Publicly available at GitHub
                                 </div>
                                 <div className={"flex flex-row gap-3 items-center justify-center mt-4"}>
-                                    <div className={`h-2 w-[18px] ${true ? "bg-gradient-to-r from-[#3B572D] via-[#1A281D] to-[#3B572D]" : "bg-[#7EBD4D]"}`}></div>
+                                    <div className={`h-2 w-[18px] ${!targetProject?.deployedHttpAddress ? "bg-gradient-to-r from-[#3B572D] via-[#1A281D] to-[#3B572D]" : "bg-[#7EBD4D]"}`}></div>
                                     Accessible via https
                                 </div>
                             </div>
@@ -180,38 +180,36 @@ export default function RenderWorldPage({ params }: { params: { project: string 
 
                             {
                                 mobileGrayTarget > 21 &&
-
-                                            <div className={"flex flex-col gap-0 items-center justify-center lg:hidden mb-4 mx-3"}>
-                                                <div className={"flex flex-row gap-3 items-center justify-center mt-4"}>
-                                                    <div className={`h-2 w-[18px] ${false ? "bg-gradient-to-r from-[#3B572D] via-[#1A281D] to-[#3B572D]" : "bg-[#7EBD4D]"}`}></div>
-                                                    Publicly available at GitHub
-                                                    <Link
-                                                        href={targetProject?.github || targetProject?.deployedHttpAddress as string}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className={"mt-0"}
-                                                    >
-                                                        <div className={"min-w-40 h-[33px] bg-[#968682] border-3 border-[#BDB2AF] relative border-b-[#3A3638] border-r-[#3A3638] flex items-center justify-center"}>
-                                                            View at GitHub
-                                                        </div>
-                                                    </Link>
-                                                </div>
-                                                <div className={"flex flex-row gap-3 items-center justify-between mt-4 w-full"}>
-                                                    <div className={`h-2 w-[18px] ${true ? "bg-gradient-to-r from-[#3B572D] via-[#1A281D] to-[#3B572D]" : "bg-[#7EBD4D]"}`}></div>
-                                                    Accessible online via https
-                                                    <Link
-                                                        href={targetProject?.deployedHttpAddress || targetProject?.github as string}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className={"mt-0"}
-                                                    >
-                                                        <div className={"min-w-40 h-[33px] bg-[#968682] border-3 border-[#BDB2AF] relative border-b-[#3A3638] border-r-[#3A3638] flex items-center justify-center"}>
-                                                            {targetProject?.deployedHttpAddress?.slice(0, 14)}...
-                                                        </div>
-                                                    </Link>
-                                                </div>
+                                <div className={"flex flex-col gap-0 items-center justify-center lg:hidden mb-4 mx-3"}>
+                                    <div className={"flex flex-row gap-3 items-center justify-center mt-4"}>
+                                        <div className={`h-2 w-[18px] ${!targetProject?.github ? "bg-gradient-to-r from-[#3B572D] via-[#1A281D] to-[#3B572D]" : "bg-[#7EBD4D]"}`}></div>
+                                        Publicly available at GitHub
+                                        <Link
+                                            href={targetProject?.github || targetProject?.deployedHttpAddress as string}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={"mt-0"}
+                                        >
+                                            <div className={"min-w-40 h-[33px] bg-[#968682] border-3 border-[#BDB2AF] relative border-b-[#3A3638] border-r-[#3A3638] flex items-center justify-center"}>
+                                                View at GitHub
                                             </div>
-
+                                        </Link>
+                                    </div>
+                                    <div className={"flex flex-row gap-3 items-center justify-between mt-4 w-full"}>
+                                        <div className={`h-2 w-[18px] ${!targetProject?.deployedHttpAddress ? "bg-gradient-to-r from-[#3B572D] via-[#1A281D] to-[#3B572D]" : "bg-[#7EBD4D]"}`}></div>
+                                        Accessible online via https
+                                        <Link
+                                            href={targetProject?.deployedHttpAddress || targetProject?.github as string}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={"mt-0"}
+                                        >
+                                            <div className={"min-w-40 h-[33px] bg-[#968682] border-3 border-[#BDB2AF] relative border-b-[#3A3638] border-r-[#3A3638] flex items-center justify-center"}>
+                                                {targetProject?.deployedHttpAddress?.slice(0, 14)}...
+                                            </div>
+                                        </Link>
+                                    </div>
+                                </div>
                             }
                         </div>
                     </div>

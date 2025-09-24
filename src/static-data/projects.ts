@@ -4,7 +4,6 @@ export const projects = [
         icon: "/projects/utlp/logo.png",
         title: "UTLP Landing",
         description: "Landing for the Ultimate Technologies, with pages statically exported",
-        github: "",
         deployedHttpAddress: "https://ut-lp-landing-production.up.railway.app",
         technologies: [
             "ts",

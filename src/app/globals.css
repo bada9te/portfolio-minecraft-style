@@ -18,8 +18,8 @@
   }
 }
 
-html {
-  cursor: url("/public/cursors/default.png"), auto;
+html, body, * {
+  cursor: url("Untitled-1.png") 4 4, auto !important;
 }
 
 body {

@@ -72,16 +72,35 @@ export default function RedirectPage() {
 
 
                 <div className={`${modalIsOpened ? "opacity-0" : "opacity-100"} -mt-6 lg:mt-10 w-full h-fit z-10 flex flex-col justify-center items-center max-w-sm lg:max-w-xl`}>
-                    <div className={"flex flex-col items-center gap-1 lg:gap-3 w-full"}>
+                    <div className={"flex flex-col items-center gap-1 lg:gap-3 w-full relative"}>
                         <MainMenuButton handleClickAction={() => router.push("/about")}>About Me</MainMenuButton>
                         <MainMenuButton handleClickAction={() => router.push("/tech-stack")}>Tech Stack</MainMenuButton>
                         <MainMenuButton handleClickAction={() => router.push("/projects")}>Projects</MainMenuButton>
+
+                        <Link href={"https://github.com/bada9te"} target={"_blank"} className={"w-14 absolute bottom-0 -right-16 block lg:hidden"}>
+                            <MainMenuButton handleClickAction={() => {}}>
+                                <Image src={"/icons/github.png"} alt={"github"} width={32} height={32} />
+                            </MainMenuButton>
+                        </Link>
+
+                        <Link href={"https://github.com/bada9te"} target={"_blank"} className={"w-14 absolute bottom-0 -left-16 block lg:hidden"}>
+                            <MainMenuButton handleClickAction={() => {}}>
+                                <Image src={"/textures/Enchanted_Book.gif"} alt={"contacts"} width={32} height={32} />
+                            </MainMenuButton>
+                        </Link>
                     </div>
 
                     <div className={"flex-row justify-between gap-3 w-full mt-14 hidden lg:flex"}>
-                        <MainMenuButton handleClickAction={() => router.push("/contacts")}>Contacts</MainMenuButton>
+                        <MainMenuButton handleClickAction={() => router.push("/contacts")}>
+                            <Image src={"/textures/Enchanted_Book.gif"} alt={"contacts"} width={36} height={36} className={"mr-2"}/>
+                            Contacts
+                        </MainMenuButton>
+
                         <Link href={"https://github.com/bada9te"} target={"_blank"} className={"w-full"}>
-                            <MainMenuButton handleClickAction={() => {}}><Github size={28} className={"mr-2"}/>Github</MainMenuButton>
+                            <MainMenuButton handleClickAction={() => {}}>
+                                <Image src={"/icons/github.png"} alt={"github"} width={36} height={36} className={"mr-2 mb-1"}/>
+                                Github
+                            </MainMenuButton>
                         </Link>
                     </div>
                 </div>
