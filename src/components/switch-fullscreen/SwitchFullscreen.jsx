@@ -2,32 +2,17 @@
 import {useEffect, useState} from "react";
 import Image from "next/image";
 
+
 export default function SwitchFullscreen() {
-    const [isFullScreen, setIsFullScreen] = useState(false);
+    const [isFullScreen, setIsFullScreen] = useState(null);
     const [mounted, setMounted] = useState(null);
-
-    useEffect(() => {
-        const handle = (e) => {
-            setIsFullScreen(false)
-        }
-        document.addEventListener("visibilitychange", handle);
-
-        return () => {
-            document.removeEventListener("visibilitychange", handle);
-        }
-    }, []);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
-    if (!mounted) return null;
-
-    // Get the root element (whole page)
-    let elem = document.documentElement;
 
     // Request fullscreen
     function openFullscreen() {
+        // Get the root element (whole page)
+        let elem = document.documentElement;
+
+        console.log("ENTER")
         if (elem.requestFullscreen) {
             elem.requestFullscreen();
         } else if (elem.mozRequestFullScreen) { // Firefox
@@ -43,6 +28,7 @@ export default function SwitchFullscreen() {
 
     // Exit fullscreen
     function closeFullscreen() {
+        console.log("EXIT")
         if (document.exitFullscreen) {
             document.exitFullscreen();
         } else if (document.mozCancelFullScreen) { // Firefox
@@ -55,6 +41,7 @@ export default function SwitchFullscreen() {
 
         setIsFullScreen(false);
     }
+
 
 
     return (
