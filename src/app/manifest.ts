@@ -7,5 +7,12 @@ export default function manifest(): MetadataRoute.Manifest {
         description: 'Minecraft-styled bada9te.dev portfolio website',
         start_url: '/',
         display: 'fullscreen',
+        icons: [
+            {
+                src: '/favicon.ico',
+                sizes: 'any',
+                type: 'image/x-icon',
+            },
+        ],
     }
 }
