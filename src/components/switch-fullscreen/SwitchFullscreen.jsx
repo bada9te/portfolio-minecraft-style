@@ -146,10 +146,10 @@ export default function SwitchFullscreen() {
     }
 
     return (
-        <div className="relative">
+        <div className="relative w-full">
             <button
                 onClick={toggleFullscreen}
-                className="cursor-pointer absolute top-3 left-2 z-50 bg-[#706E6D] border-3 border-white border-b-gray-700 border-r-gray-700 w-7 h-7 flex items-center justify-center"
+                className="cursor-pointer absolute top-3 left-2  z-50 bg-[#706E6D] border-3 border-white border-b-gray-700 border-r-gray-700 w-7 h-7 flex items-center justify-center"
                 title={isIOS ? "Limited fullscreen support on iOS" : "Toggle fullscreen"}
             >
                 <Image
@@ -163,7 +163,7 @@ export default function SwitchFullscreen() {
 
             {/* iOS warning badge */}
             {isIOS && !isFullScreen && (
-                <div className="absolute top-10 left-2 bg-yellow-500 text-black text-xs px-2 py-1 rounded z-50">
+                <div className="absolute top-10 left-2 bg-yellow-500 text-black font-bold text-md px-2 py-1 rounded z-50">
                     iOS Limited
                 </div>
             )}
