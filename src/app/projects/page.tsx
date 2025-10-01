@@ -9,9 +9,11 @@ import CheckScreenOrientation from "@/components/check-screen-orientation/CheckS
 import MainMenuButton from "@/components/main-menu-btn/MainMenuButton";
 import Link from "next/link";
 
+
 export default function Projects() {
     const router = useRouter();
     const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+    const [searchedProject, setSearchedProject] = useState<string | null>(null);
 
 
     return (
@@ -23,7 +25,7 @@ export default function Projects() {
                 closeButtonTitle={"Back"}
                 onClose={() => router.push("/")}
                 headerSearchBar={
-                    <div className={"hidden lg:flex w-full items-center justify-center"}><InputBar/></div>
+                    <div className={"hidden lg:flex w-full items-center justify-center"}><InputBar onInput={setSearchedProject}/></div>
                 }
                 additionalButtons={
                     <Link href={selectedProject?.github || ""} target={"_blank"} className={"w-full"}>
@@ -38,7 +40,9 @@ export default function Projects() {
             >
                 <div className={"w-full h-full overflow-y-scroll max-w-[844px] flex-col items-center gap-3 pt-6 px-10 hidden lg:flex"}>
                     {
-                        projects.map((item, index) => (
+                        projects
+                            .filter((project) => searchedProject ? project.title.toLowerCase().includes(searchedProject) : true)
+                            .map((item, index) => (
                             <ProjectAsWorld
                                 key={index}
                                 project={item}

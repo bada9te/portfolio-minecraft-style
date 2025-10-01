@@ -97,27 +97,35 @@ export default function RenderWorldPage({ params }: { params: { project: string 
 
 
                             <div className={"hidden lg:flex flex-row gap-4"}>
-                                <Link
-                                    href={targetProject?.deployedHttpAddress || targetProject?.github as string}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={"mt-10 hidden lg:block"}
-                                >
-                                    <div className={"min-w-48 h-16 bg-[#968682] border-3 border-[#BDB2AF] relative border-b-[#3A3638] border-r-[#3A3638] flex items-center justify-center"}>
-                                        View at GitHub
-                                    </div>
-                                </Link>
+                                {
+                                    targetProject?.github &&
+                                    <Link
+                                        href={targetProject?.github as string}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={"mt-10 hidden lg:block"}
+                                    >
+                                        <div className={"min-w-48 h-16 bg-[#968682] border-3 border-[#BDB2AF] relative border-b-[#3A3638] border-r-[#3A3638] flex items-center justify-center"}>
+                                            View at GitHub
+                                        </div>
+                                    </Link>
 
-                                <Link
-                                    href={targetProject?.deployedHttpAddress || targetProject?.github as string}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={"mt-10 hidden lg:block"}
-                                >
-                                    <div className={"min-w-48 h-16 bg-[#968682] border-3 border-[#BDB2AF] relative border-b-[#3A3638] border-r-[#3A3638] flex items-center justify-center"}>
-                                        {targetProject?.deployedHttpAddress?.slice(0, 14)}...
-                                    </div>
-                                </Link>
+                                }
+
+                                {
+                                    targetProject?.deployedHttpAddress &&
+                                    <Link
+                                        href={targetProject?.deployedHttpAddress as string}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={"mt-10 hidden lg:block"}
+                                    >
+                                        <div className={"min-w-48 h-16 bg-[#968682] border-3 border-[#BDB2AF] relative border-b-[#3A3638] border-r-[#3A3638] flex items-center justify-center"}>
+                                            {targetProject?.deployedHttpAddress?.slice(0, 14)}...
+                                        </div>
+                                    </Link>
+                                }
+
 
                                 <Link
                                     href={"/projects"}
