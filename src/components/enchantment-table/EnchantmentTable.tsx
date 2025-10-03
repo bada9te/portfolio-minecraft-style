@@ -85,7 +85,7 @@ export default function EnchantmentTable({ placedTechnology, setPlacedTechnology
 
                                                 if (projectsFiltered.length) {
                                                     return projectsFiltered.map((project, key) => (
-                                                        <ProjectWithTech link={project?.github || ""} title={project.title} index={key + 1} key={key} />
+                                                        <ProjectWithTech link={project?.github || project?.deployedHttpAddress as string} title={project.title} index={key + 1} key={key} />
                                                     ))
                                                 }
 
