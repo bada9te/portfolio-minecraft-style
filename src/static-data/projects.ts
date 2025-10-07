@@ -1,10 +1,14 @@
+const generateDom = (cname: string) => {
+    return `https://${cname}.bada9te.dev`
+}
+
 export const projects = [
     // utlp landing
     {
         icon: "/projects/utlp/logo.png",
         title: "UTLP Landing",
         description: "Landing for the Ultimate Technologies, with pages statically exported",
-        deployedHttpAddress: "https://ut-lp-landing-production.up.railway.app",
+        deployedHttpAddress: generateDom("ut-design"),
         technologies: [
             "ts",
             "nextjs",
@@ -14,19 +18,36 @@ export const projects = [
         ],
     },
 
+    // ren zon lim
+    {
+        icon: "/projects/renzonlim/logo.png",
+        title: "RenZonLim",
+        description: "Renovatie zonder limiten website ",
+        deployedHttpAddress: generateDom("ren-zon-lim"),
+        github: "https://github.com/bada9te/RenZonLim",
+        technologies: [
+            "ts",
+            "nodejs",
+            "nextjs",
+            "react",
+            "react",
+            "python",
+        ],
+    },
+
     // mfn server
     {
         icon: "/projects/mfn/logo.png",
         title: "Tunes Hub Client",
         description: "The Music-Streaming Platform With Web-3 Integrations - Web client part",
         github: "https://github.com/bada9te/mfnClient",
-        deployedHttpAddress: "https://web.musicfromnothing.app",
+        deployedHttpAddress: generateDom("tuneshub-web"),
         technologies: [
             "ts",
             "nodejs",
             "nextjs",
             "solidity",
-            "axios",
+            "react",
             "graphql",
             "react",
             "mongodb",
@@ -78,6 +99,7 @@ export const projects = [
         title: "Geometrical Figures",
         description: "Web application for 3d visualisation of basic figures",
         github: "https://github.com/bada9te/Geometrical-Figures",
+        deployedHttpAddress: generateDom("geometrical-figures"),
         technologies: [
             "js",
             "nodejs",
@@ -95,7 +117,7 @@ export const projects = [
         title: "Fenster Plus",
         description: "Simple single-paged React web application which stands for visit card of a company",
         github: "https://github.com/bada9te/FensterPlus",
-        deployedHttpAddress: "",
+        deployedHttpAddress: generateDom("fenster-plus"),
         technologies: [
             "js",
             "react",
