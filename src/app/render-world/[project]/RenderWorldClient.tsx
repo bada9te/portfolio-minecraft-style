@@ -1,7 +1,7 @@
 // src/app/render-world/[project]/RenderWorldClient.tsx
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -145,19 +145,32 @@ export default function RenderWorldClient({
                     }
 
                     { /* MOBILE LAYOUT */ }
-                    <Image
-                        src={"/texts/main_menu.png"}
-                        alt={"title"}
-                        width={1920}
-                        height={1080}
-                        className={"w-[600px] lg:w-[800px] mt-10 block lg:hidden"}
-                    />
+                    <div className={"block lg:hidden"}>
+                        <Image
+                            src={"/texts/main_menu_mobile.png"}
+                            alt={"title"}
+                            width={1000}
+                            height={1000}
+                            className={"hidden portrait:block -mt-10 lg:mt-0 w-80"}
+                        />
+
+                        <Image
+                            src={"/texts/main_menu.png"}
+                            alt={"title"}
+                            width={1920}
+                            height={1080}
+                            className={"hidden landscape:block portrait:w-[340px] landscape:w-[600px] landscape:lg:w-[800px]"}
+                        />
+                    </div>
+
 
                     <div
                         className={`
                             flex flex-col items-center justify-start
-                            lg:hidden max-w-xl 
-                            bg-[#C5C5C5] min-h-48 min-w-[500px] -mt-10 border-white border-b-[#535354] border-r-[#535354]
+                            lg:hidden portrait:max-w-80 landscape:max-w-xl 
+                            bg-[#C5C5C5] min-h-48 portrait:min-w-full landscape:min-w-[500px] 
+                            portrait:mt-10 landscape:-mt-10 
+                            border-white border-b-[#535354] border-r-[#535354]
                             border-3 px-3 pb-3 relative
                         `}
                     >
@@ -171,12 +184,12 @@ export default function RenderWorldClient({
                             />
                         </Link>
 
-                        <span className={"text-[#464646] mt-2 text-lg"}>{mobileGrayTarget <= 21 ? "Generating world..." : "Generation completed"}</span>
+                        <span className={"text-[#464646] mt-2 portrait:text-md landscape:text-lg"}>{mobileGrayTarget <= 21 ? "Generating world..." : "Generation completed"}</span>
 
-                        <div className={"relative w-full min-w-[546px] h-full bg-black border-white border-t-[#535354] border-l-[#535354] border-3 px-7 pt-2"}>
+                        <div className={"relative w-full portrait:min-w-full landscape:min-w-[546px] h-full bg-black border-white border-t-[#535354] border-l-[#535354] border-3 px-7 pt-2"}>
                             {
                                 mobileGrayTarget <= 21 &&
-                                <span>Generating the terrain and preparing github links...</span>
+                                <span className={"portrait:text-sm landscape:text-md"}>Generating the terrain and preparing github links...</span>
                             }
 
                             {
@@ -184,7 +197,7 @@ export default function RenderWorldClient({
                                 <div className={"absolute bottom-6 -translate-x-1/2 left-1/2 flex flex-row gap-[3px] bg-black"}>
                                     {
                                         Array.from({ length: 23 }).map((_, i) => (
-                                            <div key={i} className={`h-2 w-[18px] ${mobileGrayTarget < i ? "bg-gradient-to-r from-[#3B572D] via-[#1A281D] to-[#3B572D]" : "bg-[#7EBD4D]"}`}></div>
+                                            <div key={i} className={`h-2 portrait:w-[8px] landscape:w-[18px] ${mobileGrayTarget < i ? "bg-gradient-to-r from-[#3B572D] via-[#1A281D] to-[#3B572D]" : "bg-[#7EBD4D]"}`}></div>
                                         ))
                                     }
                                 </div>
@@ -192,10 +205,10 @@ export default function RenderWorldClient({
 
                             {
                                 mobileGrayTarget > 21 &&
-                                <div className={"flex flex-col gap-0 items-center justify-center lg:hidden mb-4 mx-3"}>
-                                    <div className={"flex flex-row gap-3 items-center justify-center mt-4"}>
+                                <div className={"flex flex-col gap-0 items-center justify-center lg:hidden mb-4 w-full"}>
+                                    <div className={"flex portrait:flex-col landscape:flex-row gap-3 items-center justify-between mt-4 w-full"}>
                                         <div className={`h-2 w-[18px] ${!targetProject?.github ? "bg-gradient-to-r from-[#3B572D] via-[#1A281D] to-[#3B572D]" : "bg-[#7EBD4D]"}`}></div>
-                                        Publicly available at GitHub
+                                        <span className={"portrait:text-sm landscape:text-md"}>Publicly available at GitHub</span>
                                         <Link
                                             href={targetProject?.github || targetProject?.deployedHttpAddress as string}
                                             target="_blank"
@@ -207,9 +220,9 @@ export default function RenderWorldClient({
                                             </div>
                                         </Link>
                                     </div>
-                                    <div className={"flex flex-row gap-3 items-center justify-between mt-4 w-full"}>
+                                    <div className={"flex portrait:flex-col landscape:flex-row gap-3 items-center justify-between mt-4 w-full"}>
                                         <div className={`h-2 w-[18px] ${!targetProject?.deployedHttpAddress ? "bg-gradient-to-r from-[#3B572D] via-[#1A281D] to-[#3B572D]" : "bg-[#7EBD4D]"}`}></div>
-                                        Accessible online via https
+                                        <span className={"portrait:text-sm landscape:text-md"}>Accessible online via https</span>
                                         <Link
                                             href={targetProject?.deployedHttpAddress || targetProject?.github as string}
                                             target="_blank"

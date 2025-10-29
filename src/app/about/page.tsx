@@ -46,7 +46,7 @@ export default function About() {
         <>
             <CheckScreenOrientation/>
             <OverlayModal title={"About me"} isOpen={true} onClose={() => router.push("/")} closeButtonTitle={"Done"}>
-                <div className={"max-w-xl text-start flex flex-col gap-2 h-full overflow-y-scroll py-20"}>
+                <div className={"max-w-xl text-start flex flex-col gap-2 h-full overflow-y-scroll py-20 text-sm md:text-md portrait:px-5 landscape:px-0"}>
                     <div className={"w-full items-center justify-center flex mt-4"}>
                         <Image src={"/textures/villager_head.png"} alt={"pickaxe"} width={64} height={64}/>
                     </div>

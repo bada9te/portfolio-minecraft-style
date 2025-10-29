@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Image from "next/image";
 
 export default function CheckScreenOrientation() {
+    return null;
     useEffect(() => {
         const message = document.querySelector(".portrait-message");
 

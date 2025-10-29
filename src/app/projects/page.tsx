@@ -53,7 +53,7 @@ export default function Projects() {
                     }
                 </div>
 
-                <div className={"w-full h-full overflow-y-scroll max-w-[844px] flex lg:hidden flex-col items-center gap-3 pt-6 px-10"}>
+                <div className={"w-full h-full overflow-y-scroll max-w-[844px] flex lg:hidden flex-col items-center gap-3 pt-6 text-sm md:text-md portrait:px-5 landscape:px-10"}>
                     {
                         projects.map((item, index) => (
                             <ProjectAsWorld

@@ -49,17 +49,25 @@ export default function RedirectPage() {
                 <div className={`${modalIsOpened ? "opacity-0" : "opacity-100"} w-screen h-fit z-10 flex justify-center`}>
                     <div className={"relative flex flex-col items-center justify-center w-fit"}>
                         <Image
+                            src={"/texts/main_menu_mobile.png"}
+                            alt={"title"}
+                            width={1000}
+                            height={1000}
+                            className={"hidden portrait:block -mt-10 lg:mt-0 w-80"}
+                        />
+
+                        <Image
                             src={"/texts/main_menu.png"}
                             alt={"title"}
                             width={1920}
                             height={1080}
-                            className={"portrait:w-[400px] landscape:w-[600px] landscape:lg:w-[800px] -mt-10 lg:mt-0"}
+                            className={"hidden landscape:block portrait:w-[340px] landscape:w-[600px] landscape:lg:w-[800px] -mt-10 lg:mt-0"}
                         />
 
                         <span
                             ref={helperTextRef}
                             className={`
-                                -rotate-[24deg] font-extrabold text-yellow-300 text-2xl lg:text-4xl -mt-10 lg:mt-0
+                                -rotate-[24deg] font-extrabold text-yellow-300 text-2xl lg:text-4xl portrait:mt-32 landscape:-mt-10 lg:mt-0
                                 [text-shadow:_3px_3px_0px_black] 
                                 absolute -right-6 md:-right-12
                             `}
@@ -71,19 +79,19 @@ export default function RedirectPage() {
                 </div>
 
 
-                <div className={`${modalIsOpened ? "opacity-0" : "opacity-100"} -mt-6 lg:mt-10 w-full h-fit z-10 flex flex-col justify-center items-center max-w-sm lg:max-w-xl`}>
-                    <div className={"flex flex-col items-center gap-1 lg:gap-3 w-full relative"}>
+                <div className={`${modalIsOpened ? "opacity-0" : "opacity-100"} portrait:mt-10 landscape:-mt-6 lg:mt-10 w-full h-fit z-10 flex flex-col justify-center items-center max-w-sm lg:max-w-xl`}>
+                    <div className={"flex flex-col items-center gap-1 lg:gap-3 w-full relative portrait:p-7"}>
                         <MainMenuButton handleClickAction={() => router.push("/about")}>About Me</MainMenuButton>
                         <MainMenuButton handleClickAction={() => router.push("/tech-stack")}>Tech Stack</MainMenuButton>
                         <MainMenuButton handleClickAction={() => router.push("/projects")}>Projects</MainMenuButton>
 
-                        <Link href={"https://github.com/bada9te"} target={"_blank"} className={"w-14 absolute bottom-0 -right-16 block lg:hidden"}>
+                        <Link href={"https://github.com/bada9te"} target={"_blank"} className={"w-14 absolute portrait:-bottom-7 landscape:bottom-0 portrait:right-7 landscape:-right-16 block lg:hidden"}>
                             <MainMenuButton handleClickAction={() => {}}>
                                 <Image src={"/icons/github.png"} alt={"github"} width={32} height={32} />
                             </MainMenuButton>
                         </Link>
 
-                        <Link href={"https://github.com/bada9te"} target={"_blank"} className={"w-14 absolute bottom-0 -left-16 block lg:hidden"}>
+                        <Link href={"/contacts"} className={"w-14 absolute portrait:-bottom-7 landscape:bottom-0 portrait:left-7 landscape:-left-16 block lg:hidden"}>
                             <MainMenuButton handleClickAction={() => {}}>
                                 <Image src={"/textures/Enchanted_Book.gif"} alt={"contacts"} width={32} height={32} />
                             </MainMenuButton>
@@ -105,8 +113,8 @@ export default function RedirectPage() {
                     </div>
                 </div>
 
-                <span className={`${modalIsOpened ? "opacity-0" : "opacity-100"} absolute bottom-3 left-3 text-md lg:text-2xl`}>Portfolio v0.1 (Modded)</span>
-                <span className={`${modalIsOpened ? "opacity-0" : "opacity-100"} absolute bottom-3 right-3 text-md lg:text-2xl`}>Bohdan Teliepov</span>
+                <span className={`${modalIsOpened ? "opacity-0" : "opacity-100"} absolute bottom-3 left-3 portrait:text-sm landscape:text-md lg:text-2xl`}>Portfolio v0.1 (Modded)</span>
+                <span className={`${modalIsOpened ? "opacity-0" : "opacity-100"} absolute bottom-3 right-3 portrait:text-sm landscape:text-md lg:text-2xl`}>Bohdan Teliepov</span>
             </div>
 
         </>
