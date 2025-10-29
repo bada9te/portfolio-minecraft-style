@@ -54,15 +54,24 @@ export default function SwitchFullscreen() {
 
             console.log("ENTER fullscreen");
 
+            let shouldFallback = true;
+
             if (elem.requestFullscreen) {
-                await elem.requestFullscreen();
-            } else if (elem.webkitRequestFullscreen) {
-                await elem.webkitRequestFullscreen();
-            } else if (elem.mozRequestFullScreen) {
-                await elem.mozRequestFullScreen();
-            } else if (elem.msRequestFullscreen) {
-                await elem.msRequestFullscreen();
-            } else {
+                await elem.requestFullscreen().catch(console.log); shouldFallback = false;
+            }
+            if (elem.webkitRequestFullscreen) {
+                await elem.webkitRequestFullscreen(); shouldFallback = false;
+            }
+            if (elem.mozRequestFullScreen) {
+                await elem.mozRequestFullScreen().catch(console.log); shouldFallback = false;
+            }
+
+            if (elem.msRequestFullscreen) {
+                await elem.msRequestFullscreen().catch(console.log); shouldFallback = false;
+            }
+
+
+            if (shouldFallback) {
                 throw new Error("Fullscreen not supported");
             }
 
@@ -80,13 +89,13 @@ export default function SwitchFullscreen() {
             console.log("EXIT fullscreen");
 
             if (document.exitFullscreen) {
-                await document.exitFullscreen();
+                await document.exitFullscreen().catch(console.log);
             } else if (document.webkitExitFullscreen) {
-                await document.webkitExitFullscreen();
+                await document.webkitExitFullscreen().catch(console.log);
             } else if (document.mozCancelFullScreen) {
-                await document.mozCancelFullScreen();
+                await document.mozCancelFullScreen().catch(console.log);
             } else if (document.msExitFullscreen) {
-                await document.msExitFullscreen();
+                await document.msExitFullscreen().catch(console.log);
             }
 
             setIsFullScreen(false);

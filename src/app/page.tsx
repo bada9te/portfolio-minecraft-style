@@ -53,7 +53,7 @@ export default function RedirectPage() {
                             alt={"title"}
                             width={1920}
                             height={1080}
-                            className={"w-[600px] lg:w-[800px] -mt-10 lg:mt-0"}
+                            className={"portrait:w-[400px] landscape:w-[600px] landscape:lg:w-[800px] -mt-10 lg:mt-0"}
                         />
 
                         <span
