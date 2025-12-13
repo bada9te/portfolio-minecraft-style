@@ -18,7 +18,7 @@ export default function OverlayModal({ title, onClose, isOpen, closeButtonTitle,
     }
 
     return (
-        <div className="w-screen h-full absolute top-0 left-0 z-30">
+        <div className="w-screen h-[80vh] absolute top-0 left-0 z-30">
             <div className="grid w-full h-full landscape:grid-rows-[15%_65%_20%] portrait:grid-rows-[15%_70%_15%]">
                 <div className="backdrop-blur-sm flex flex-col items-center justify-center text-2xl gap-2">
                     <span className={"[text-shadow:_3px_3px_0px_black]"}>{title}</span>
