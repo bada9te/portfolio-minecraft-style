@@ -18,9 +18,10 @@
   }
 }
 
-html {
-  max-height: 100%;
+html, body {
+  height: 100dvh;
 }
+
 
 html, body, * {
   cursor: url("Untitled-1.png") 4 4, auto !important;
