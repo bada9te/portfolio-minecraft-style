@@ -17,7 +17,7 @@ export default function EnchantmentTableMobile({ placedTechnology, setPlacedTech
     }
 
     return (
-        <div className={"absolute inset-0 w-screen h-screen bg-[#8A7F79] border-4 border-gray-700 border-l-white"}>
+        <div className={"absolute inset-0 w-screen h-full bg-[#8A7F79] border-4 border-gray-700 border-l-white"}>
             <div className={"w-full h-full relative"}>
                 <div className={`
                     absolute right-0 top-0 h-10 w-10 z-10 flex items-center justify-center 

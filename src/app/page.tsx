@@ -64,7 +64,7 @@ export default function RedirectPage() {
     return (
         <>
             <CheckScreenOrientation/>
-            <div className={"w-screen h-screen flex flex-col items-center justify-center"}>
+            <div className={"w-screen min-h-full flex flex-col items-center justify-center"}>
                 <div className={`${modalIsOpened ? "opacity-0" : "opacity-100"} w-screen h-fit z-10 flex justify-center`}>
                     <div className={"relative flex flex-col items-center justify-center w-fit floating-target"}>
                         <Image
