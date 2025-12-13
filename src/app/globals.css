@@ -20,6 +20,10 @@
 
 html, body, * {
   cursor: url("Untitled-1.png") 4 4, auto !important;
+  max-height: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
 body {

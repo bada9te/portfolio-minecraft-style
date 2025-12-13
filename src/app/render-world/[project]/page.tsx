@@ -9,8 +9,8 @@ export async function generateStaticParams() {
 }
 
 export default async function RenderWorldPage({
-                                                  params,
-                                              }: {
+    params,
+}: {
     params: Promise<{ project: string }>;
 }) {
     const { project } = await params;
