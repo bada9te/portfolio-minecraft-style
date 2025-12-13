@@ -18,7 +18,7 @@ export default function EnchantmentTable({ placedTechnology, setPlacedTechnology
     const router = useRouter();
 
     return (
-        <div className={"w-screen h-[80vh] relative"}>
+        <div className={"w-screen h-screen relative"}>
             <div className={"absolute inset-0 bg-black/50 cursor-pointer"} onClick={() => router.push("/")}></div>
 
             <div className={`

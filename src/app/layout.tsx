@@ -31,7 +31,7 @@ export default function RootLayout({
         className={`${minecraftFont.variable} antialiased`}
       >
       <div
-          className={"content-block text-white relative font-minecraft bg-no-repeat w-screen min-h-[80vh] flex flex-col items-center overflow-hidden"}>
+          className={"content-block text-white relative font-minecraft bg-no-repeat w-screen min-h-full flex flex-col items-center overflow-hidden"}>
           <SwitchFullscreen/>
           <div
               style={{
