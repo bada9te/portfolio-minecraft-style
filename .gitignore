@@ -2,6 +2,8 @@
 
 .idea
 
+/out
+
 # dependencies
 /node_modules
 /.pnp
