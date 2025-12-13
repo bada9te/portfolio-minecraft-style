@@ -82,7 +82,7 @@ export default function RenderWorldClient({
     return (
         <>
             <CheckScreenOrientation/>
-            <div className="bg-transparent w-screen h-screen z-20 text-white flex flex-col justify-center items-center">
+            <div className="bg-transparent w-screen h-full z-20 text-white flex flex-col justify-center items-center">
                 <div className="flex flex-col gap-3 items-center justify-center">
 
                     { /* MOBILE LAYOUT */ }
