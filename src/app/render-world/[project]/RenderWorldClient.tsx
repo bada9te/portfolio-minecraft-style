@@ -83,7 +83,7 @@ export default function RenderWorldClient({
         <>
             <CheckScreenOrientation/>
             <div className="bg-transparent w-screen h-full z-20 text-white flex flex-col justify-center items-center">
-                <div className="flex flex-col gap-3 items-center justify-center">
+                <div className="flex flex-col gap-3 items-center justify-center mt-44 md:mt-52 lg:mt-32">
 
                     { /* MOBILE LAYOUT */ }
                     <div className={"block floating-target"}>
@@ -110,7 +110,7 @@ export default function RenderWorldClient({
                             flex flex-col items-center justify-start
                             portrait:max-w-80 landscape:max-w-xl 
                             bg-[#C5C5C5] min-h-48 portrait:min-w-full landscape:min-w-[500px] 
-                            portrait:mt-10 landscape:-mt-10 
+                            mt-10
                             border-white border-b-[#535354] border-r-[#535354]
                             border-3 px-3 pb-3 relative
                         `}
@@ -127,7 +127,7 @@ export default function RenderWorldClient({
 
                         <span className={"text-[#464646] mt-2 portrait:text-md landscape:text-lg"}>{mobileGrayTarget <= 21 ? "Generating world..." : "Generation completed"}</span>
 
-                        <div className={"relative w-full portrait:min-w-full landscape:min-w-[546px] h-full bg-black border-white border-t-[#535354] border-l-[#535354] border-3 px-7 pt-2"}>
+                        <div className={"relative w-full portrait:min-w-full landscape:min-w-[546px] min-h-[167px] bg-black border-white border-t-[#535354] border-l-[#535354] border-3 px-7 pt-2"}>
                             {
                                 mobileGrayTarget <= 21 &&
                                 <span className={"portrait:text-sm landscape:text-md"}>Generating the terrain and preparing github links...</span>
@@ -156,7 +156,7 @@ export default function RenderWorldClient({
                                             rel="noopener noreferrer"
                                             className={"mt-0"}
                                         >
-                                            <div className={"min-w-40 h-[33px] bg-[#968682] border-3 border-[#BDB2AF] relative border-b-[#3A3638] border-r-[#3A3638] flex items-center justify-center"}>
+                                            <div className={"min-w-52 h-[33px] bg-[#968682] border-3 border-[#BDB2AF] relative border-b-[#3A3638] border-r-[#3A3638] flex items-center justify-center"}>
                                                 View at GitHub
                                             </div>
                                         </Link>
@@ -170,7 +170,7 @@ export default function RenderWorldClient({
                                             rel="noopener noreferrer"
                                             className={"mt-0"}
                                         >
-                                            <div className={"min-w-40 h-[33px] bg-[#968682] border-3 border-[#BDB2AF] relative border-b-[#3A3638] border-r-[#3A3638] flex items-center justify-center"}>
+                                            <div className={"min-w-52 h-[33px] bg-[#968682] border-3 border-[#BDB2AF] relative border-b-[#3A3638] border-r-[#3A3638] flex items-center justify-center"}>
                                                 {targetProject?.deployedHttpAddress?.slice(0, 14)}...
                                             </div>
                                         </Link>
