@@ -8,16 +8,21 @@ export async function generateStaticParams() {
     }));
 }
 
-export default function RenderWorldPage({
-                                            params,
-                                        }: {
-    params: { project: string };
+export default async function RenderWorldPage({
+                                                  params,
+                                              }: {
+    params: Promise<{ project: string }>;
 }) {
+    const { project } = await params;
+
     const targetProject = projects.find(
-        (i) => i.title.replaceAll(" ", "") === params.project
+        (i) => i.title.replaceAll(" ", "") === project
     );
 
     return (
-        <RenderWorldClient project={params.project} targetProject={targetProject} />
+        <RenderWorldClient
+            project={project}
+            targetProject={targetProject}
+        />
     );
 }

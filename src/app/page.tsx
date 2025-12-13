@@ -4,7 +4,6 @@ import {useEffect, useRef, useState} from 'react';
 import {usePathname, useRouter} from 'next/navigation';
 import Image from "next/image";
 import MainMenuButton from "@/components/main-menu-btn/MainMenuButton";
-import {Github} from "lucide-react";
 import gsap from "gsap";
 import Link from "next/link";
 import CheckScreenOrientation from "@/components/check-screen-orientation/CheckScreenOrientation";
@@ -41,13 +40,33 @@ export default function RedirectPage() {
         setIsMounted(true);
     }, []);
 
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            const float = () => {
+                gsap.to(".floating-target", {
+                    x: gsap.utils.random(-14, 14),
+                    y: gsap.utils.random(-14, 14),
+                    rotation: gsap.utils.random(-4, 4),
+                    duration: gsap.utils.random(4, 6),
+                    ease: "sine.inOut",
+                    onComplete: float, // loop with new random values
+                });
+            };
+
+            float();
+        });
+
+        return () => ctx.revert();
+    }, []);
+
+
 
     return (
         <>
             <CheckScreenOrientation/>
             <div className={"w-screen h-screen flex flex-col items-center justify-center"}>
                 <div className={`${modalIsOpened ? "opacity-0" : "opacity-100"} w-screen h-fit z-10 flex justify-center`}>
-                    <div className={"relative flex flex-col items-center justify-center w-fit"}>
+                    <div className={"relative flex flex-col items-center justify-center w-fit floating-target"}>
                         <Image
                             src={"/texts/main_menu_mobile.png"}
                             alt={"title"}
@@ -61,7 +80,7 @@ export default function RedirectPage() {
                             alt={"title"}
                             width={1920}
                             height={1080}
-                            className={"hidden landscape:block portrait:w-[340px] landscape:w-[600px] landscape:lg:w-[800px] -mt-10 lg:mt-0"}
+                            className={"hidden landscape:block portrait:w-[340px] landscape:w-[600px] landscape:lg:w-[800px] -mt-10 lg:mt-0 pb-20"}
                         />
 
                         <span
@@ -113,8 +132,8 @@ export default function RedirectPage() {
                     </div>
                 </div>
 
-                <span className={`${modalIsOpened ? "opacity-0" : "opacity-100"} absolute bottom-3 left-3 portrait:text-sm landscape:text-md lg:text-2xl`}>Portfolio v0.1 (Modded)</span>
-                <span className={`${modalIsOpened ? "opacity-0" : "opacity-100"} absolute bottom-3 right-3 portrait:text-sm landscape:text-md lg:text-2xl`}>Bohdan Teliepov</span>
+                <span className={`${modalIsOpened ? "opacity-0" : "opacity-100"} absolute bottom-3 left-3 portrait:text-sm landscape:text-md lg:text-2xl [text-shadow:_3px_3px_0px_black]`}>Portfolio v0.1 (Modded)</span>
+                <span className={`${modalIsOpened ? "opacity-0" : "opacity-100"} absolute bottom-3 right-3 portrait:text-sm landscape:text-md lg:text-2xl [text-shadow:_3px_3px_0px_black]`}>Bohdan Teliepov</span>
             </div>
 
         </>
