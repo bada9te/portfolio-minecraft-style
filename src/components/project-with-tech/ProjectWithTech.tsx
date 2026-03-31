@@ -12,7 +12,7 @@ export default function ProjectWithTech({ title, index, link }: IProjectWithTech
 
     const handleClickWithSound = () => {
         const audio = new Audio("/audio/menu_click.mp3");
-        audio.play();
+        audio.play().catch(err => console.error("Audio play failed:", err));
     }
 
     return (

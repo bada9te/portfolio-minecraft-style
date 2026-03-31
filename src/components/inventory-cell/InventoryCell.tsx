@@ -6,10 +6,10 @@ export default function InventoryCell({ itemAsImage, handleClick, isSelected, to
         if (itemAsImage) {
             if (isSelected) {
                 const audio = new Audio("/audio/enchant_displace.ogg");
-                audio.play();
+                audio.play().catch(err => console.error("Audio play failed:", err));
             } else {
                 const audio = new Audio("/audio/enchant_place.ogg");
-                audio.play();
+                audio.play().catch(err => console.error("Audio play failed:", err));
             }
         }
 
